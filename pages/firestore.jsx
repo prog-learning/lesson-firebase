@@ -6,8 +6,6 @@ const FirestorePage = () => {
   const [name, setName] = React.useState('');
   const [message, setMessage] = React.useState('');
 
-  // const [state, setState] = React.useState();
-
   /* 取得したfirestoreの値を入れる場所 */
   const [messages, setMessages] = React.useState([]);
 
