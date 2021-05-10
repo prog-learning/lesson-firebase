@@ -24,7 +24,6 @@ const FirestorePage = () => {
     });
   };
 
-
   /* 書き換え */
   const replace = () => {
     firebase.firestore().collection('collection_name').doc('書き換えたいdocのid').set({
@@ -38,7 +37,7 @@ const FirestorePage = () => {
 
   /* 指定箇所のみ更新 */
   const update = () => {
-    firebase.firestore().collection('collectionA').doc('書き換えたいdocのid').update({
+    firebase.firestore().collection('collection_name').doc('書き換えたいdocのid').update({
       // その場所だけ書き換える
       content: 'メッセージだけ書き換えました',
     });
