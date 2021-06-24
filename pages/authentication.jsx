@@ -1,7 +1,6 @@
 import React from 'react';
-import firebase from '../firebase';
-import { DateView } from '../components/DateView';
-import { AuthProvider, AuthContext } from '../firebase/Auth';
+import firebase from '../src/firebase';
+import { AuthProvider, AuthContext } from '../src/firebase/Auth';
 import Link from 'next/link';
 
 const AuthenticationPage = () => {
@@ -60,15 +59,16 @@ const AuthenticationPage = () => {
 
   return (
     <div>
-      {/* <DateView data={user} /> */}
+      <h2>Authentication</h2>
+      <hr />
       <div>アカウントを作成</div>
       <button onClick={userCheck}>ログイン状態の確認</button>
       <br />
-      <label htmlFor="email">Email: </label>
-      <input id='email' type='email' onChange={e => setEmail(e.target.value)} />
+      <label htmlFor='email'>Email: </label>
+      <input id='email' type='email' onChange={(e) => setEmail(e.target.value)} />
       <br />
-      <label htmlFor="password">Password: </label>
-      <input id='password' type='password' onChange={e => setPassword(e.target.value)} />
+      <label htmlFor='password'>Password: </label>
+      <input id='password' type='password' onChange={(e) => setPassword(e.target.value)} />
       <br />
       <button onClick={signupEmail}>入力したEmailとPasswordでアカウント作成</button>
       <br />
@@ -79,7 +79,7 @@ const AuthenticationPage = () => {
       <br />
       <button onClick={signinGitHub}>GitHubアカウントでログイン</button>
       <br />
-      <Link href="/mypage">
+      <Link href='/mypage'>
         <a>ログインしている場合だけ見れるページへ</a>
       </Link>
       <br />

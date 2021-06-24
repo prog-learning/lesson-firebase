@@ -1,5 +1,5 @@
 import React from 'react';
-import firebase from '../firebase';
+import firebase from '../src/firebase';
 
 const FirestorePage = () => {
   /* 入力フォームの値 */
@@ -57,17 +57,20 @@ const FirestorePage = () => {
     firebase.firestore().collection('collection_name').doc('消したいdocのid').delete();
   };
 
-
   /**
    * データの取得
    */
 
   /* then で書く場合 */
   const getByThen = () => {
-    firebase.firestore().collection('collection_name').get().then((snapshot) => {
-      const docs = snapshot.docs.map((doc) => doc.data());
-      setMessages(docs);
-    });
+    firebase
+      .firestore()
+      .collection('collection_name')
+      .get()
+      .then((snapshot) => {
+        const docs = snapshot.docs.map((doc) => doc.data());
+        setMessages(docs);
+      });
   };
 
   /* async / await で書く場合 */
@@ -77,30 +80,25 @@ const FirestorePage = () => {
     setMessages(data);
   };
 
-  /* apiで取得する場合(next-api) */
-  const fetchData = async () => {
-    // 未完&遅い
-    const data = await fetch('/api/get-data');
-    const _data = data.json();
-    console.log(_data);
-  };
-
   /* データを取得して監視 */
   const observe = async () => {
-    firebase.firestore().collection('collectionA').onSnapshot((snapshot) => {
-      const data = snapshot.docs.map(doc => doc.data());
-      setMessages(data);
-    });
+    firebase
+      .firestore()
+      .collection('collectionA')
+      .onSnapshot((snapshot) => {
+        const data = snapshot.docs.map((doc) => doc.data());
+        setMessages(data);
+      });
   };
 
   return (
     <div>
       <div>ここに入力した値を保存</div>
       <div>名前</div>
-      <input type="text" onChange={e => setName(e.target.value)} />
+      <input type='text' onChange={(e) => setName(e.target.value)} />
       <br />
       <div>メッセージ</div>
-      <textarea type="text" onChange={e => setMessage(e.target.value)}></textarea>
+      <textarea type='text' onChange={(e) => setMessage(e.target.value)}></textarea>
       <br />
       <button onClick={add}>追加</button>
       <button onClick={addsaveId}>追加(IDも保存)</button>
@@ -111,12 +109,14 @@ const FirestorePage = () => {
       <button onClick={getByAwait}>取得</button>
       {/* <button onClick={fetchData}>APIで取得</button> */}
       <button onClick={observe}>監視</button>
-      {messages.map((messages, index) => <div key={index}>
-        <hr />
-        <p>名前：{messages.name}</p>
-        <p>内容：{messages.content}</p>
-        <p>時間：{Date(messages.sendAt)}</p>
-      </div>)}
+      {messages.map((messages, index) => (
+        <div key={index}>
+          <hr />
+          <p>名前：{messages.name}</p>
+          <p>内容：{messages.content}</p>
+          <p>時間：{Date(messages.sendAt)}</p>
+        </div>
+      ))}
       <hr />
     </div>
   );

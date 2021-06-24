@@ -1,5 +1,5 @@
 import React from 'react';
-import { AuthContext } from '../firebase/Auth';
+import { AuthContext } from '../src/firebase/Auth';
 import { useRouter } from 'next/router';
 
 const MyPage = () => {
@@ -17,11 +17,7 @@ const MyPage = () => {
       <div>ID: {uid || 'no_id'}</div>
       <div>Name: {displayName || 'no_name'}</div>
       <div>Email: {email || 'no_email'}</div>
-      {photoURL ?
-        <img src={photoURL} alt="user_image" />
-        :
-        <div>no_image</div>
-      }
+      {photoURL ? <img src={photoURL} alt='user_image' /> : <div>no_image</div>}
     </div>
   );
 };
