@@ -1,19 +1,17 @@
 import firebase from 'firebase/app';
-import "firebase/firestore";
-import "firebase/auth";
+import 'firebase/firestore';
+import 'firebase/auth';
 
-const firebaseConfig = {
-  apiKey: "AIzaSyCmkgbE4FRaDdPIqjL9zHhYYwa6F1zxQqA",
-  authDomain: "lesson-firebase-e03ab.firebaseapp.com",
-  projectId: "lesson-firebase-e03ab",
-  storageBucket: "lesson-firebase-e03ab.appspot.com",
-  messagingSenderId: "508930306099",
-  appId: "1:508930306099:web:5c42e8fdd50b689661b346",
+const config = {
+  apiKey: process.env.NEXT_PUBLIC_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_APP_ID,
 };
 
-if (firebase.apps.length === 0) {
-  firebase.initializeApp(firebaseConfig);
-}
+!firebase.apps.length ? firebase.initializeApp(config) : firebase.app();
 
 export const db = firebase.firestore();
 export default firebase;
