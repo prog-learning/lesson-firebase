@@ -24,21 +24,29 @@ const FirestorePage = () => {
 
   /* 書き換え */
   const replace = () => {
-    firebase.firestore().collection('collection_name').doc('書き換えたいdocのid').set({
-      name: '書き換え大好き魔神',
-      content: '書き換えられたメッセージ',
-      sendAt: firebase.firestore.FieldValue.serverTimestamp(),
-    });
+    firebase
+      .firestore()
+      .collection('collection_name')
+      .doc('書き換えたいdocのid')
+      .set({
+        name: '書き換え大好き魔神',
+        content: '書き換えられたメッセージ',
+        sendAt: firebase.firestore.FieldValue.serverTimestamp(),
+      });
   };
   // docIdが存在する場合は書き換わり,存在しない場合は新たに追加される
   // set()の中身に書き換わるので注意
 
   /* 指定箇所のみ更新 */
   const update = () => {
-    firebase.firestore().collection('collection_name').doc('書き換えたいdocのid').update({
-      // その場所だけ書き換える
-      content: 'メッセージだけ書き換えました',
-    });
+    firebase
+      .firestore()
+      .collection('collection_name')
+      .doc('書き換えたいdocのid')
+      .update({
+        // その場所だけ書き換える
+        content: 'メッセージだけ書き換えました',
+      });
   };
 
   /* 追加（ランダムなdocIdでかつ,そのdocIdを使いたい） */
@@ -54,7 +62,11 @@ const FirestorePage = () => {
 
   /* 削除 */
   const remove = () => {
-    firebase.firestore().collection('collection_name').doc('消したいdocのid').delete();
+    firebase
+      .firestore()
+      .collection('collection_name')
+      .doc('消したいdocのid')
+      .delete();
   };
 
   /**
@@ -75,7 +87,10 @@ const FirestorePage = () => {
 
   /* async / await で書く場合 */
   const getByAwait = async () => {
-    const snapshot = await firebase.firestore().collection('collection_name').get();
+    const snapshot = await firebase
+      .firestore()
+      .collection('collection_name')
+      .get();
     const data = snapshot.docs.map((doc) => doc.data());
     setMessages(data);
   };
@@ -93,12 +108,16 @@ const FirestorePage = () => {
 
   return (
     <div>
+      <h1>Firebase Firestore</h1>
       <div>ここに入力した値を保存</div>
       <div>名前</div>
       <input type='text' onChange={(e) => setName(e.target.value)} />
       <br />
       <div>メッセージ</div>
-      <textarea type='text' onChange={(e) => setMessage(e.target.value)}></textarea>
+      <textarea
+        type='text'
+        onChange={(e) => setMessage(e.target.value)}
+      ></textarea>
       <br />
       <button onClick={add}>追加</button>
       <button onClick={addsaveId}>追加(IDも保存)</button>

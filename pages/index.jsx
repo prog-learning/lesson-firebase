@@ -6,13 +6,18 @@ const Home = () => {
     <div>
       <ul>
         <li>
-          <Link href="/authentication">
+          <Link href='/authentication'>
             <a>Authentication</a>
           </Link>
         </li>
         <li>
-          <Link href="/firestore">
+          <Link href='/firestore'>
             <a>Firestore</a>
+          </Link>
+        </li>
+        <li>
+          <Link href='/storage'>
+            <a>Storage</a>
           </Link>
         </li>
       </ul>

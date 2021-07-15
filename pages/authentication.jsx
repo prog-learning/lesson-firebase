@@ -18,14 +18,18 @@ const AuthenticationPage = () => {
 
   /* Email でアカウントの作成 */
   const signupEmail = async () => {
-    const userCredential = await firebase.auth().createUserWithEmailAndPassword(email, password);
+    const userCredential = await firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password);
     // 作成後,自動でログインされる
     console.log(userCredential);
     setUser(userCredential.user);
   };
   /* Email でログイン */
   const signinEmail = async () => {
-    const userCredential = await firebase.auth().signInWithEmailAndPassword(email, password);
+    const userCredential = await firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password);
     console.log(userCredential);
     setUser(userCredential.user);
   };
@@ -59,18 +63,28 @@ const AuthenticationPage = () => {
 
   return (
     <div>
-      <h2>Authentication</h2>
+      <h2>Firebase Authentication</h2>
       <hr />
       <div>アカウントを作成</div>
       <button onClick={userCheck}>ログイン状態の確認</button>
       <br />
       <label htmlFor='email'>Email: </label>
-      <input id='email' type='email' onChange={(e) => setEmail(e.target.value)} />
+      <input
+        id='email'
+        type='email'
+        onChange={(e) => setEmail(e.target.value)}
+      />
       <br />
       <label htmlFor='password'>Password: </label>
-      <input id='password' type='password' onChange={(e) => setPassword(e.target.value)} />
+      <input
+        id='password'
+        type='password'
+        onChange={(e) => setPassword(e.target.value)}
+      />
       <br />
-      <button onClick={signupEmail}>入力したEmailとPasswordでアカウント作成</button>
+      <button onClick={signupEmail}>
+        入力したEmailとPasswordでアカウント作成
+      </button>
       <br />
       <button onClick={signinEmail}>入力したEmailとPasswordでログイン</button>
       <br />
