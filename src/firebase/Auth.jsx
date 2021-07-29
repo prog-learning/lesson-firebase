@@ -8,13 +8,13 @@ export const AuthProvider = ({ children }) => {
   // ログインチェック
   React.useEffect(() => {
     authObserve();
-    console.log(user);
+    // console.log(user);
   }, []);
 
   /* ログイン状態の監視 */
   const authObserve = async () => {
     firebase.auth().onAuthStateChanged((user) => {
-      console.log(user);
+      // console.log(user);
       if (user) {
         // ログインしている場合は user にユーザーデータが入る
         setUser(user);
