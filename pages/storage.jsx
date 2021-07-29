@@ -3,7 +3,7 @@ import { storage } from '../src/firebase';
 
 const Storage = () => {
   /* ブラウザにアップロードした際の入れ物 */
-  const [files, setFiles] = useState();
+  const [files, setFiles] = useState([]);
   /* 取得した画像のURLを保存する場所 */
   const [imageUrl, setImageUrl] = useState();
 
@@ -45,9 +45,21 @@ const Storage = () => {
 
   console.log(files);
   console.log(imageUrl);
+
+  const createFileURL = (file) => {
+    if (!process.browser || !file) return;
+    return window.URL.createObjectURL(file);
+  };
+
   return (
     <div>
       <h1>Firebase Storage</h1>
+      {files[0] && (
+        <div>
+          <p>《アップロード画像のプレビュー》</p>
+          <img src={createFileURL(files[0])} alt='preview' width={200} />
+        </div>
+      )}
       <input type='file' onChange={(e) => setFiles(e.target.files)} />
       <button onClick={upload}>upload</button>
       <button onClick={get}>get</button>
