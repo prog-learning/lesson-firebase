@@ -96,47 +96,50 @@ const Storage = () => {
   return (
     <div>
       <h1>Firebase Storage</h1>
-      <h2>1つのファイルに関する処理</h2>
-      {files[0] && (
-        <div>
-          <p>《アップロード画像のプレビュー》</p>
-          {createFileURL(files).map((url, index) => (
-            <img key={index} src={url} alt='preview' width={200} />
-          ))}
-        </div>
-      )}
-      <input
-        type='file'
-        accept='image/*'
-        onChange={(e) => setFiles(e.target.files)}
-      />
-      <button onClick={upload}>upload</button>
-      <button onClick={get}>get</button>
-      <button onClick={statementUpload}>statementUpload</button>
-      <br />
-
-      <p>《取得した画像》</p>
-      <img src={imageUrl} width={200} />
-
+      <div>
+        <h2>1つのファイルに関する処理</h2>
+        {files[0] && (
+          <div>
+            <p>《アップロード画像のプレビュー》</p>
+            {createFileURL(files).map((url, index) => (
+              <img key={index} src={url} alt='preview' width={200} />
+            ))}
+          </div>
+        )}
+        {/* Interface */}
+        <input
+          type='file'
+          accept='image/*'
+          onChange={(e) => setFiles(e.target.files)}
+        />
+        <button onClick={upload}>upload</button>
+        <button onClick={get}>get</button>
+        <button onClick={statementUpload}>statementUpload</button>
+        <br />
+        <p>《取得した画像》</p>
+        <img src={imageUrl} width={200} />
+      </div>
       <hr />
-
-      <h2>複数のファイルを処理する場合</h2>
-      {multiFiles[0] && (
-        <div>
-          <p>《アップロード画像のプレビュー》</p>
-          {createFileURL(multiFiles).map((url, index) => (
-            <img key={index} src={url} alt='preview' width={200} />
-          ))}
-        </div>
-      )}
-      <input type='file' accept='image/*' multiple onChange={handleChange} />
-      <button onClick={multiUpload}>multi upload</button>
-      <button onClick={multiGet}>multi get</button>
-      <br />
-      <p>《取得した画像一覧》</p>
-      {imageUrls.map((url, index) => (
-        <img key={index} src={url} width={200} />
-      ))}
+      <div>
+        <h2>複数のファイルを処理する場合</h2>
+        {multiFiles[0] && (
+          <div>
+            <p>《アップロード画像のプレビュー》</p>
+            {createFileURL(multiFiles).map((url, index) => (
+              <img key={index} src={url} alt='preview' width={200} />
+            ))}
+          </div>
+        )}
+        {/* Interface */}
+        <input type='file' accept='image/*' multiple onChange={handleChange} />
+        <button onClick={multiUpload}>multi upload</button>
+        <button onClick={multiGet}>multi get</button>
+        <br />
+        <p>《取得した画像一覧》</p>
+        {imageUrls.map((url, index) => (
+          <img key={index} src={url} width={200} />
+        ))}
+      </div>
     </div>
   );
 };
