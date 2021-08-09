@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import firebase from '.';
 
 export const AuthContext = React.createContext(null);
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = React.useState(null);
+  const [user, setUser] = useState(null);
   // ログインチェック
-  React.useEffect(() => {
+  useEffect(() => {
     authObserve();
-    // console.log(user);
+    console.log(user);
   }, []);
 
   /* ログイン状態の監視 */

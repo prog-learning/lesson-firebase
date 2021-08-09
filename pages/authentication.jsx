@@ -1,6 +1,6 @@
 import React from 'react';
 import firebase from '../src/firebase';
-import { AuthProvider, AuthContext } from '../src/firebase/Auth';
+import { AuthContext } from '../src/firebase/Auth';
 import Link from 'next/link';
 
 const AuthenticationPage = () => {
@@ -25,6 +25,7 @@ const AuthenticationPage = () => {
     console.log(userCredential);
     setUser(userCredential.user);
   };
+
   /* Email でログイン */
   const signinEmail = async () => {
     const userCredential = await firebase
@@ -42,6 +43,14 @@ const AuthenticationPage = () => {
     setUser(userCredential.user);
   };
 
+  /* Twitter でログイン */
+  const signinTwitter = async () => {
+    const provider = new firebase.auth.TwitterAuthProvider();
+    const userCredential = await firebase.auth().signInWithPopup(provider);
+    console.log(userCredential);
+    setUser(userCredential.user);
+  };
+
   /* GitHub でログイン */
   const signinGitHub = async () => {
     const provider = new firebase.auth.GithubAuthProvider();
@@ -49,6 +58,12 @@ const AuthenticationPage = () => {
     console.log(userCredential);
     setUser(userCredential.user);
     /* EmailでのアカウントとGitHubのアカウントに重複があると負荷 */
+  };
+  /* 匿名ログイン */
+  const signinAnonymous = async () => {
+    const userCredential = await firebase.auth().signInAnonymously();
+    console.log(userCredential);
+    setUser(userCredential.user);
   };
 
   const logout = async () => {
@@ -91,7 +106,11 @@ const AuthenticationPage = () => {
       <div>その他のアカウントでログイン</div>
       <button onClick={signinGoogle}>Googleアカウントでログイン</button>
       <br />
+      <button onClick={signinTwitter}>Twitterアカウントでログイン</button>
+      <br />
       <button onClick={signinGitHub}>GitHubアカウントでログイン</button>
+      <br />
+      <button onClick={signinAnonymous}>匿名でログイン</button>
       <br />
       <Link href='/mypage'>
         <a>ログインしている場合だけ見れるページへ</a>

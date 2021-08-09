@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { AuthContext } from '../src/firebase/Auth';
 import { useRouter } from 'next/router';
 
 const MyPage = () => {
-  const [user] = React.useContext(AuthContext);
+  const [user] = useContext(AuthContext);
   const { displayName, email, photoURL, uid } = user || {};
   console.log(user);
 
   const router = useRouter();
-  React.useEffect(() => {
+  useEffect(() => {
     !user && router.push('/authentication');
   }, []);
   return (
