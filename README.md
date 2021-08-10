@@ -1,8 +1,28 @@
 # Lesson Firebase
 
-ページの移動を簡単にするために Next.js で構成してますが,create-react-app と react-router でも問題ありません
+## Hostingの方法
 
-- Authentication
-- Firestore
-- Strage
-- Hosting
+firebase-toolsをイントール
+```
+npm install -g firebase-tools
+```
+
+ログイン
+```
+firebase login
+```
+
+Hostingの設定
+```
+firebase init
+```
+
+ビルド
+```
+yarn build
+```
+
+デプロイ
+```
+firebase deploy
+```
